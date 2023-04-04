@@ -4,11 +4,11 @@ import { Filter } from "./Filter";
 import { ContactForm } from "./ContactForm";
 import css from './App.module.css'
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts, selectFilter } from './redux/selectors';
 import { useEffect } from 'react';
-import { fetchContacts } from './redux/api';
-import { selectIsLoadingState } from "./redux/selectors";
-import { selectErrorState } from "./redux/selectors";
+import { fetchContacts } from 'redux/api';
+import { selectContacts, selectFilter } from 'redux/selectors';
+import { selectIsLoadingState } from 'redux/selectors';
+import { selectErrorState } from 'redux/selectors';
 import { Audio } from 'react-loader-spinner'
 
 

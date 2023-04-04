@@ -2,9 +2,9 @@ import PropTypes from 'prop-types'
 import css from './App.module.css'
 import { useState } from "react";
 import { Report } from 'notiflix/build/notiflix-report-aio';
-import { addContactToStore } from './redux/api';
+import { addContactToStore } from 'redux/api';
 import { useSelector, useDispatch } from 'react-redux'
-import { selectContacts } from './redux/selectors';
+import { selectContacts } from 'redux/selectors';
 
 export const ContactForm = () => {
     const [Name, setName] = useState('');

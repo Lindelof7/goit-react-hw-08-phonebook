@@ -1,7 +1,7 @@
 import nextId from "react-id-generator";
 import css from './App.module.css'
 import { useDispatch } from 'react-redux';
-import { deleteContact } from "./redux/api";
+import { deleteContact } from "redux/api";
 
 
 export const ContactList = ({ filteredContacts }) => {
