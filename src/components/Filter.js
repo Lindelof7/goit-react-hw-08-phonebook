@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import css from './App.module.css'
 import { setFilter } from 'redux/contactFilter';
 import { selectFilter } from 'redux/selectors';
+import { Heading, Input } from '@chakra-ui/react'
 
 export const Filter = ({ value }) => {
     const Filter = useSelector(selectFilter)
@@ -12,14 +13,20 @@ export const Filter = ({ value }) => {
         dispatch(setFilter(evt.target.value))
     }
 
-    return (<div className={(css.filterWrap)}><label htmlFor="contactFilter" className={(css.formLabel)}>Find contacts by name</label>
-        <input
-            className={(css.filterInput)}
-            onChange={onFiltChange}
-            type="text"
-            name="number"
-            id="contactFilter"
-            value={Filter}
-        /></div>)
+    return (<>
+        <Heading className={(css.phonebookWrap)} >Contacts</Heading>
+        <div className={(css.filterWrap)}><label htmlFor="contactFilter" className={(css.formLabel)}>Find contacts by name</label>
+            <Input
+                width={400}
+                className={(css.phonebookWrap)}
+                pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+                type="text"
+                name="number"
+                id="contactFilter"
+                value={Filter}
+                onChange={onFiltChange}
+            /></div>
+    </>)
 }
 

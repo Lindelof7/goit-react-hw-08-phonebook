@@ -1,41 +1,48 @@
 import PropTypes from 'prop-types'
-import { ContactList } from './ContactList'
-import { Filter } from "./Filter";
-import { ContactForm } from "./ContactForm";
-import css from './App.module.css'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchContacts } from 'redux/api';
-import { selectContacts, selectFilter } from 'redux/selectors';
-import { selectIsLoadingState } from 'redux/selectors';
-import { selectErrorState } from 'redux/selectors';
 import { Audio } from 'react-loader-spinner'
+import { Suspense } from "react";
+import { Phonebook } from './Phonebook';
+import { NavLink, Route, Routes } from 'react-router-dom';
+import { Login } from './Login';
+import { Register } from './Register';
+import css from './App.module.css'
 
 
 export const App = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(selectContacts);
-  const filterVal = useSelector(selectFilter);
-  const isLoading = useSelector(selectIsLoadingState);
-  const Error = useSelector(selectErrorState);
-
-
-  const loweredFilter = filterVal.toLocaleLowerCase();
-  const filteredContacts = contacts.filter(contact => contact.name.toLocaleLowerCase().includes(loweredFilter))
+  // const isLoading = useSelector(selectIsLoadingState);
 
   useEffect(() => {
     dispatch(fetchContacts())
   }, [dispatch])
 
   return (
-    <div className={(css.appWrap)}>
-      <h1>Phonebook</h1>
-      <ContactForm />
-      <h2>Contacts</h2>
-      <Filter />
-      {isLoading ? <Audio /> : <ContactList filteredContacts={filteredContacts} />}
-      {Error && <h2>Sorry, our service has got a problem</h2>}
-    </div >
+    <div >
+      <Suspense fallback={<Audio
+        height="80"
+        width="80"
+        radius="9"
+        color="green"
+        ariaLabel="loading"
+      />}>
+        <nav className={(css.navWrap)}>
+          <NavLink to="/" id="sidebar">Phonebook</NavLink>
+          <div className={(css.navMarginWrap)}>
+            <NavLink to="/login" id="sidebar">Login</NavLink>
+            <NavLink to="/register" id="sidebar">Register</NavLink>
+          </div>
+        </nav>
+        <Routes >
+          <Route path="/" element={<Phonebook />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} >
+          </Route>
+        </Routes>
+      </Suspense>
+    </div>
   )
 }
 

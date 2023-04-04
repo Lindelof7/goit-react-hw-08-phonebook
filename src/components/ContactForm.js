@@ -5,6 +5,8 @@ import { Report } from 'notiflix/build/notiflix-report-aio';
 import { addContactToStore } from 'redux/api';
 import { useSelector, useDispatch } from 'react-redux'
 import { selectContacts } from 'redux/selectors';
+import { Button, Heading, Input } from '@chakra-ui/react'
+
 
 export const ContactForm = () => {
     const [Name, setName] = useState('');
@@ -20,6 +22,7 @@ export const ContactForm = () => {
     const handleNumChange = evt => {
         setNumber(evt.target.value);
     }
+
 
     const addContact = (evt) => {
         evt.preventDefault();
@@ -40,42 +43,48 @@ export const ContactForm = () => {
         setNumber('')
     }
 
-    return (
-        <form onSubmit={addContact} >
-            <fieldset className={(css.formEl)}>
-                <label htmlFor="contactName" className={(css.formLabel)}>Name</label>
-                <input
-                    className={(css.formInput)}
-                    type="text"
-                    name="name"
-                    id="contactName"
-                    pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-                    title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-                    required
-                    value={Name}
-                    onChange={handleNameChange}
-                />
-                <label htmlFor="contactNumber" className={(css.formLabel)}>Number</label>
-                <input
-                    className={(css.formInput)}
-                    type="tel"
-                    name="number"
-                    id="contactNumber"
-                    pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-                    title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-                    required
-                    value={Number}
-                    onChange={handleNumChange}
-                />
-                <button type="submit" className={(css.formSubmit)}>Add Contact</button>
-            </fieldset>
-        </ form >
 
+    return (
+        <>
+            <form onSubmit={addContact} className={(css.phonebookWrap)} >
+                <fieldset className={(css.formEl)}>
+                    <Heading as='h2' size='lg'>Name</Heading>
+                    <Input
+                        name='name'
+                        width={600}
+                        type="text"
+                        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                        title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+                        required
+                        placeholder='Name'
+                        id="contactName"
+                        size='md'
+                        value={Name}
+                        onChange={handleNameChange}
+                    />
+                    <Heading as='h2' size='lg'>Number</Heading>
+                    <Input
+                        name='number'
+                        width={600}
+                        type="tel"
+                        pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+                        title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+                        required
+                        placeholder='Phone number'
+                        id="contactNumber"
+                        size='md'
+                        value={Number}
+                        onChange={handleNumChange}
+                    />
+                    <Button colorScheme='blue' type="submit" width={400} height={45} className={(css.formSubmit)}>Add Contact</Button>
+                </fieldset>
+            </ form >
+        </>
     )
 }
-
 
 ContactForm.propTypes = {
     Name: PropTypes.string,
     Number: PropTypes.string
 };
+
