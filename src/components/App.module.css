@@ -1,0 +1,50 @@
+.appWrap{
+    padding-left: 20px;
+}
+.formEl{
+    outline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: fit-content;
+    padding-top: 40px;
+}
+
+.formSubmit{
+    height: 50px;
+    width: 120px;
+    align-items: center;
+    margin: auto;
+    background-color: #555555;
+    color: white;
+    border-radius: 15px;
+}
+
+.formInput{
+    width: 400px;
+}
+
+.formLabel{
+    font-style: oblique;
+}
+
+.filterWrap{
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
+.filterInput{
+    width: 400px;
+}
+.contactList{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.contactListBtn{
+    margin-left: 20px;
+     background-color: #555555;
+    color: white;
+}
