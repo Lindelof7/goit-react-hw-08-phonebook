@@ -22,7 +22,7 @@ export const ContactList = () => {
         {filteredContacts.map
             (contact =>
                 <ListItem key={nextId()} display="flex">
-                    <Text fontSize='19px'>{contact.name} : {contact.number}</Text>
+                    <Text fontSize='15px'>{contact.name} : {contact.number}</Text>
                     <Button size="sm" colorScheme={"teal"} onClick={() => { dispatch(deleteContact(contact.id)) }} className={(css.contactListBtn)}>Delete</Button>
                 </ListItem>)}
     </OrderedList>

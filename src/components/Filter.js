@@ -14,11 +14,12 @@ export const Filter = ({ value }) => {
     }
 
     return (<>
-        <Heading className={(css.phonebookWrap)} >Contacts</Heading>
+        <Heading  as='h2' size='md' className={(css.phonebookWrap)} >Contacts</Heading>
         <div className={(css.filterWrap)}><label htmlFor="contactFilter" className={(css.formLabel)}>Find contacts by name</label>
             <Input
-                width={400}
-                className={(css.phonebookWrap)}
+                width={300}
+                height={8}
+                className={(css.filterInputWrap)}
                 pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
                 title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
                 type="text"

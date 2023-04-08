@@ -9,18 +9,34 @@ import { NavLink, Route, Routes } from 'react-router-dom';
 import { Login } from './Login';
 import { Register } from './Register';
 import css from './App.module.css'
+import { ErrorMessage } from './ErrorMessage';
+import { useAuth } from 'hooks/useAuth';
+import { UserMenu } from './UserMenu';
+import { WelcomePage } from './WelcomePage';
+import { refreshUser } from 'redux/auth/operations';
+import { RestrictedRoute } from './RestrictedRoute';
+import { PrivateRoute } from './PrivateRoute';
 
 
 export const App = () => {
   const dispatch = useDispatch();
-  // const isLoading = useSelector(selectIsLoadingState);
+  const { isLoggedIn, isRefreshing } = useAuth();
+
+  // if (isLoggedIn) {
+  //   dispatch(fetchContacts())
+  // }
 
   useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch])
+
+  useEffect(() => {
+    console.log(123)
     dispatch(fetchContacts())
   }, [dispatch])
 
-  return (
-    <div >
+  return ( !isRefreshing &&
+    <div className={(css.appWrap)}>
       <Suspense fallback={<Audio
         height="80"
         width="80"
@@ -29,16 +45,26 @@ export const App = () => {
         ariaLabel="loading"
       />}>
         <nav className={(css.navWrap)}>
-          <NavLink to="/" id="sidebar">Phonebook</NavLink>
+          <NavLink to="/" id="sidebar">Home</NavLink>
+          <NavLink to="/phonebook" id="sidebar">Phonebook</NavLink>
           <div className={(css.navMarginWrap)}>
-            <NavLink to="/login" id="sidebar">Login</NavLink>
-            <NavLink to="/register" id="sidebar">Register</NavLink>
+            {isLoggedIn
+              ?
+               <UserMenu/>
+              :
+              <>
+                <NavLink to="/login" id="login">Login</NavLink>
+                <NavLink to="/register" id="register">Register</NavLink>
+              </>
+            }
           </div>
         </nav>
         <Routes >
-          <Route path="/" element={<Phonebook />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} >
+          <Route path="/" element={<WelcomePage />} />
+          <Route path="/phonebook" element={<PrivateRoute component={Phonebook} redirectTo='/login' />} />
+          <Route path="/login" element={<RestrictedRoute component={Login}  redirectTo='/phonebook'/>}/>
+          <Route path="/register" element={<RestrictedRoute component={Register}  redirectTo='/phonebook'/>} >
+            <Route path="*" element={<ErrorMessage />} />
           </Route>
         </Routes>
       </Suspense>

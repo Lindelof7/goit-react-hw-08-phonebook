@@ -1,12 +1,21 @@
 .phonebookWrap{
     margin-left: 20px;
+    margin-top: 20px;
+    margin-right: 10px;
 }
+
+.filterInputWrap{
+    margin-left: 20px;
+    margin-top: 8px;
+    border: 1px solid black;
+}
+
 .formEl{
-    outline: auto;
+    outline: 1px solid black;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    max-width: fit-content;
+    max-width: 500px;
     padding: 40px;
 }
 
@@ -39,37 +48,43 @@
     display: flex;
     padding-left: 60px;
     padding-top: 30px;
-    padding-bottom: 30px;
+    padding-bottom: 20px;
     margin-bottom: 20px;
     gap: 40px;
-    font-size: 30px;
+    font-size: 20px;
    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .navMarginWrap{
     display: flex;
-    gap: 100px;
+    gap: 40px;
     padding-right: 50px;
     margin-left: auto;
 }
 
 .registerWrap{
-    margin-top: 200px;
+    margin-top: 150px;
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
 .registerHeader{
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     display: flex;
-  justify-content: center;
-  align-items: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.name{
+    margin-bottom: 12px;
 }
 
 .email{
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 }
 
 .password{
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 }
 
 .submitRegister{

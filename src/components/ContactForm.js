@@ -11,9 +11,7 @@ import { Button, Heading, Input } from '@chakra-ui/react'
 export const ContactForm = () => {
     const [Name, setName] = useState('');
     const [Number, setNumber] = useState('');
-
     const contacts = useSelector(selectContacts)
-
     const dispatch = useDispatch();
 
     const handleNameChange = evt => {
@@ -48,35 +46,35 @@ export const ContactForm = () => {
         <>
             <form onSubmit={addContact} className={(css.phonebookWrap)} >
                 <fieldset className={(css.formEl)}>
-                    <Heading as='h2' size='lg'>Name</Heading>
+                    <Heading as='h2' size='md'>Name</Heading>
                     <Input
                         name='name'
-                        width={600}
+                        width={450}
                         type="text"
                         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
                         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
                         required
                         placeholder='Name'
                         id="contactName"
-                        size='md'
+                        size='sm'
                         value={Name}
                         onChange={handleNameChange}
                     />
-                    <Heading as='h2' size='lg'>Number</Heading>
+                    <Heading as='h2' size='md'>Number</Heading>
                     <Input
                         name='number'
-                        width={600}
+                        width={450}
                         type="tel"
                         pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
                         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
                         required
                         placeholder='Phone number'
                         id="contactNumber"
-                        size='md'
+                        size='sm'
                         value={Number}
                         onChange={handleNumChange}
                     />
-                    <Button colorScheme='blue' type="submit" width={400} height={45} className={(css.formSubmit)}>Add Contact</Button>
+                    <Button colorScheme='blue' type="submit" width={250} height={35} className={(css.formSubmit)}>Add Contact</Button>
                 </fieldset>
             </ form >
         </>
