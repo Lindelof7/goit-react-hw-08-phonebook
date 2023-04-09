@@ -32,8 +32,10 @@ export const App = () => {
 
   useEffect(() => {
     console.log(123)
-    dispatch(fetchContacts())
-  }, [dispatch])
+    if (isLoggedIn) {
+          dispatch(fetchContacts())
+    }
+  }, [dispatch, isLoggedIn])
 
   return ( !isRefreshing &&
     <div className={(css.appWrap)}>
