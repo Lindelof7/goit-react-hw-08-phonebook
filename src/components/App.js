@@ -22,16 +22,11 @@ export const App = () => {
   const dispatch = useDispatch();
   const { isLoggedIn, isRefreshing } = useAuth();
 
-  // if (isLoggedIn) {
-  //   dispatch(fetchContacts())
-  // }
-
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch])
 
   useEffect(() => {
-    console.log(123)
     if (isLoggedIn) {
           dispatch(fetchContacts())
     }
